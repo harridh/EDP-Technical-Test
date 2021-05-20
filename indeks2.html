@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>soal 2</title>
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<h1>Soal 2</h1>
+	<h3>nama : Harridh Ramdhani</h3>
+	<form>
+		<input type="text" name="array_char" placeholder="ex : a,b,c,d,e">
+		<button type="submit">submit array</button>
+		<div class="hasil">ini hasil kebalik : <span></span></div>
+	</form>
+	<script>
+		var sPageURL = window.location.search.substring(1);
+		array_list = sPageURL.split("=")[1];
+		array_char = decodeURIComponent(array_list);
+		array_char = array_char.split(',');
+
+		console.log(array_char);
+
+		// array_char = ["a", "b", "c", "d", "e"]
+		char_kebalik = [];
+
+		for(i=array_char.length - 1; i >= 0; i-- ){
+		  char_kebalik.push(array_char[i]);
+		}
+		console.log(char_kebalik);
+		$('.hasil').find('span').html(char_kebalik);
+	</script>
+</body>
+</html>

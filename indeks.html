@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>soal 1</title>
+	
+</head>
+<body>
+	<h1>soal 1</h1>
+	<h3>nama : Harridh Ramdhani</h3>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<form action="indeks.html" method="get">
+		<input type="string" name="array_list" class="params_array" placeholder="ex : 1,1,0,1">
+		<button type="submit">submit array</button>
+	</form>
+	<div class="hasil">ini hasilnya : <span></span></div>
+	<script>
+		$(document).ready(function() {
+			// GetURLParameter('array_list');
+			var sPageURL = window.location.search.substring(1);
+			array_list = sPageURL.split("=")[1];
+			params_array1 = decodeURIComponent(array_list);
+			params_array1 = params_array1.split(',');
+			params_array = [];
+			$.each(params_array1,function(index,value){
+				params_array.push(parseInt(value));
+			})
+
+			console.log(params_array);
+
+			const params_array2 = [1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1];
+			console.log("hasil params2 ");
+			console.log(params_array2);
+
+
+			const findMaxConsecutiveOnes = (params_array = []) => {
+			   let left = 0;
+			   let right = 0;
+			   let max = 0;
+			   while (right < params_array.length) {
+			      if (params_array[right] === 0) {
+			         if (right - left > max) {
+			            max = right - left
+			         };
+			         right++;
+			         left = right;
+			      } else {
+			         right++
+			      };
+			   };
+			   return right - left > max ? right - left : max;
+			}
+
+			console.log("ini hasilnya");
+
+			console.log(findMaxConsecutiveOnes(params_array));
+			$('.hasil').find('span').html(findMaxConsecutiveOnes(params_array));
+
+			if (array_list) {
+			$('.params_array').val(params_array.join(','));	
+			}
+			
+		})
+	</script>
+
+	
+</body>
+</html>

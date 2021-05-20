@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soal 3</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <h1>Soal 3</h1>
+    <h3>nama : Harridh Ramdhani</h3>
+
+    <form>
+        <input type="text" name="bracket" placeholder="ex : {([])}">
+        <button type="submit">submit</button>
+    </form>
+    <div class="hasil">ini hasil kebalik : <span></span></div>
+    <script>
+        var sPageURL = window.location.search.substring(1);
+        array_list = sPageURL.split("=")[1];
+        bracket = decodeURIComponent(array_list);
+        
+
+        console.log(bracket);
+
+        balanced = isBalanced(bracket);
+        console.log(balanced);
+
+        $('.hasil').find('span').html(balanced);
+
+        function isBalanced(s) {
+        const openers = ['(', '{', '['];
+        const closers = {
+            ')': '(', 
+            '}': '{', 
+            ']': '['
+        };
+
+        const bracket_stack = [];
+
+        for (let i=0; i<s.length; i++) {
+            const c = s.charAt(i);
+            if (openers.includes(c)) {
+                bracket_stack.push(c);
+            } else if (closers[c]) {
+                if (bracket_stack.length == 0) {
+                    return 'NO';
+                }
+
+                if (bracket_stack.pop() !== closers[c]) {
+                    return 'NO';
+                }
+            }
+        }
+
+        if (bracket_stack.length > 0) {
+            return 'NO';
+        }
+
+        return 'YES';
+    }
+    </script>
+</body>
+</html>
